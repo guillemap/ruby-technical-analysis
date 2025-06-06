@@ -30,7 +30,7 @@ module RubyTechnicalAnalysis
     private
 
     def _smooth_coef_one
-      @_smooth_coef_one ||= (1.0 / period).round(4)
+      @_smooth_coef_one ||= (1.0 / period)
     end
 
     def _smooth_coef_two
@@ -39,7 +39,7 @@ module RubyTechnicalAnalysis
 
     def calculate_channels(cla)
       period.times.map do |index|
-        diff = (cla.at(index) - cla.at(index + 1)).round(4)
+        diff = (cla.at(index) - cla.at(index + 1))
 
         [diff.negative? ? diff.abs : 0, diff.positive? ? diff : 0]
       end.transpose
@@ -53,8 +53,8 @@ module RubyTechnicalAnalysis
     end
 
     def calculate_subsequent_smoothing(up_ch, down_ch)
-      @smooth_up << (_smooth_coef_one * up_ch.last + _smooth_coef_two * @smooth_up.last).round(4)
-      @smooth_down << (_smooth_coef_one * down_ch.last + _smooth_coef_two * @smooth_down.last).round(4)
+      @smooth_up << (_smooth_coef_one * up_ch.last + _smooth_coef_two * @smooth_up.last)
+      @smooth_down << (_smooth_coef_one * down_ch.last + _smooth_coef_two * @smooth_down.last)
     end
 
     def calculate_smoothing(up_ch, down_ch)
@@ -67,7 +67,7 @@ module RubyTechnicalAnalysis
         up_ch, down_ch = calculate_channels(cla)
 
         calculate_smoothing(up_ch, down_ch)
-        @rsi << (100.00 - (100.00 / ((@smooth_up.last.to_f / @smooth_down.last) + 1))).round(4)
+        @rsi << (100.00 - (100.00 / ((@smooth_up.last.to_f / @smooth_down.last) + 1)))
       end.last
     end
   end
