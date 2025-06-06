@@ -59,8 +59,8 @@ module RubyTechnicalAnalysis
     def _ema_percentages
       @_ema_percentages ||=
         case period
-        when 12 then [0.846154, 0.153846]
-        when 26 then [0.925926, 0.074074]
+        when 12 then [0.153846, 0.846154]
+        when 26 then [0.074074, 0.925926]
         else
           last_obs_pct = 2.0 / (period + 1)
 
