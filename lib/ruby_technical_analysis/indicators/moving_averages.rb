@@ -30,7 +30,7 @@ module RubyTechnicalAnalysis
     def ema
       return series.last if period == 1
 
-      series.last(period).each_with_object([]) do |num, result|
+      series.each_with_object([]) do |num, result|
         result << if result.empty?
           num
         else
